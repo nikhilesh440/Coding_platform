@@ -74,10 +74,12 @@ pipeline {
         //   TC05: Non-existent username     → should alert "No account found"
         //   TC06: Correct credentials       → login success, no alert
         // ─────────────────────────────────────────────
+       // ─────────────────────────────────────────────
+        // STAGE 4 — LOGIN TEST CASES
+        // ─────────────────────────────────────────────
         stage('Test: Login Validation') {
             steps {
-                // Copy the test file into src/pages so Jest picks it up
-                bat 'copy /Y Login.test.js src\\pages\\Login.test.js'
+                // REMOVED the copy line — file already lives in src/pages/
                 bat 'npx jest src/pages/Login.test.js --no-coverage --verbose'
             }
             post {
@@ -89,26 +91,21 @@ pipeline {
                 }
             }
         }
- 
+
         // ─────────────────────────────────────────────
         // STAGE 5 — LEADERBOARD TEST CASES
-        //   TC07: Users sorted by stars descending
-        //   TC08: Missing stars treated as 0
-        //   TC09: Empty localStorage returns empty list
-        //   TC10: Single user shown as rank 1
-        //   TC11: Equal stars handled without crash
         // ─────────────────────────────────────────────
         stage('Test: Leaderboard Order') {
             steps {
-                bat 'copy /Y Leaderboard.test.js src\\pages\\Leaderboard.test.js'
+                // REMOVED the copy line — file already lives in src/pages/
                 bat 'npx jest src/pages/Leaderboard.test.js --no-coverage --verbose'
             }
             post {
                 failure {
-                    echo "LEADERBOARD TESTS FAILED — check sort logic (b.stars - a.stars) in Leaderboard.jsx"
+                    echo "LEADERBOARD TESTS FAILED — check sort logic in Leaderboard.jsx"
                 }
                 success {
-                    echo "LEADERBOARD TESTS PASSED — star sorting and edge cases verified."
+                    echo "LEADERBOARD TESTS PASSED — star sorting verified."
                 }
             }
         }
