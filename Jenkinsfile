@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME        = "coding-platform"
         CONTAINER_NAME    = "coding-platform-container"
         APP_PORT          = "5173"
-        SONAR_PROJECT_KEY = "coding-platform"
+        SONAR_PROJECT_KEY = "Coding_platform"
         SONAR_HOST_URL    = "http://localhost:9000"
         // Add SONAR_TOKEN in Jenkins Credentials as a Secret Text with id: 'sonar-token'
     }
@@ -17,7 +17,7 @@ pipeline {
         // ─────────────────────────────────────────────
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/nikhilesh440/Coding-platform.git'
+                git branch: 'main', url: 'https://github.com/nikhilesh440/Coding_platform.git'
             }
         }
  
